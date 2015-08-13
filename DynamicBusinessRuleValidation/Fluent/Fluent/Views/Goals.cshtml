@@ -1,0 +1,56 @@
+﻿@{
+    PageData["title"] = "Mosaix Software | Goals";
+}
+
+<h2>Goals</h2>
+<br />
+<p>
+    Our team was tasked in finding a comprehensive replacement to our If/Else business rules logic.
+</p>
+<p>We set a list of priorities that we would like to see covered, whichever solution we chose to go with</p>
+<br />
+<ul style="font-size: 16px; list-style:square">
+    <li style="padding: 5px">
+        Unobtrusive
+        <p style="font-size: 14px">
+            Reduce clutter in controller code.<br />
+            The very nature of unobtrusive development forces us to segregate the embedded validation logic from the controller action into it's own function and call that function from that action.
+            A step further would be to make that function a class of its own. This would allow us to further decouple the validation logic from the controller code and lay the foundations for future injection of that class into other sections of our application, the very meaning of reusability.
+            Achieving this goal lays the foundations for the rest in our list.
+        </p>
+    </li>
+    <li style="padding: 5px">
+        Testable
+        <p style="font-size: 14px">
+            Increase code coverage and allow for fully dedicated validation testing.
+            By achieving the "Unobtrusive" goal, we have created the base for building a validation class. <br />
+            Encapsulating the logic into a class, we are now capable of testing this class on it's own, separate from the WebAPI pipeline.
+        </p>
+    </li>
+    <li style="padding: 5px">
+        Extensible
+        <p style="font-size: 14px">
+            Provide for pain-free development of add-on functionality and high degree of customization.<br />
+            The chosen solution should allow us to inherit, extend, combine different functionalities in order to achieve our validation target.
+        </p>
+    </li>
+    <li style="padding: 5px">
+        Injectable
+        <p style="font-size: 14px">
+            Be DI ready, allow for custom integration scenarios. <br/>
+            Moving our validation logic into its own class allows us to inject that class in as many places as are needed, utilizing anyone of the many Dependency Injection technologies.
+            For a DI to be effective, we would generalize the validation classess by having them implement an interface which will allow for common validation method signature.
+            Therfore, a validation framework should allow our validaton class to implementat this validation-specific interface. 
+            The ability to be injected also has provides a great benefit... we can now develop, test and even deploy a new version of the validator w/o affecting the one currently in production, and simply swap out the old one w/o changing any of our existing controller code base!
+        </p>
+    </li>
+    <li style="padding: 5px">
+        Easy to read and understand
+    </li>
+</ul>
+<br />
+<p>
+    Our initial thought was that Asp.Net already has a very nice validation framework via the ModelState and covers quite a bit of these goals. <br />
+    The only one we weren't sure about was the Injectability of the ModelState validation. <br />
+    However, we highly disliked the fact that we have to decorate our classes with DataAnnotations.<br />
+</p>

@@ -1,0 +1,22 @@
+﻿@{
+    PageData["title"] = "Mosaix Software | Introduction";
+}
+
+<h2>Introduction</h2>
+<br />
+<p>
+    Why validate the data submitted by the user even though we are validating it in the browser before the transmission?
+</p>
+<p>If the APIs are to be used by other applications, lack of validation will most certainly be a concern. It may be rare for us to open our APIs which are used by the browser application.</p>
+<p>
+    The more problematic case is the fact that at any time anyone with somewhat decent technical skills can supply data to our API fully circumventing the JavaScript-based validation.
+</p>
+<p>
+    For example, here is a simple screenshot of data submission to one of this demo’s APIs without the need of the web page. This API route doesn't have validation enabled.
+    As you can see on the right hand side of the screenshot, the code hit the breakpoint even though it didn't use the HTML UI, and returned OK result.
+    <br/>
+    <img src="~/Images/FluentPost_noUI.png" style="max-height: 1000px; max-width: 1000px" />
+</p>
+<p>
+    So, let's agree that validating the user submitted data at the API level is necessary, even though it feels like it is a duplication of effort.
+</p>

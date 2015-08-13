@@ -1,0 +1,69 @@
+﻿@{
+    PageData["title"] = "Mosaix Software | Demo";
+}
+<h2>Demo</h2>
+<p>The following business rules apply to the this form:</p>
+<ul>
+    <li>
+        If First Name is provided, it must contain the lower case letter z.
+    </li>
+    <li>
+        If First Name is provided, then Last Name must also be provided, or none should be provided.
+    </li>
+    <li>
+        If Last Name is provided, then First Name must also be provided, or none should be provided.
+    </li>
+    <li>
+        Email address must be valid format. We'll follow Microsoft recommended practice of using the MailAddress object rather than regular expressions.
+    </li>
+    <li>Subject must be provided and cannot be equal to Ravens.</li>
+    <li>
+        Body must be provided and be of length less than or equal to 2000 characters.
+    </li>
+</ul>
+<form name="formContactUs" novalidate>
+    <p>{{message}}</p>
+
+    <div>First Name: &nbsp;<input type="text" name="FirstName" ng-model="viewModel.firstName" /></div>
+    <div>Last Name: &nbsp;<input type="text" name="LastName" ng-model="viewModel.lastName" /></div>
+    <div>Email Address: &nbsp;<input type="text" name="EmailAddress" ng-model="viewModel.emailAddress" /></div>
+    <div>Subject: &nbsp;<input type="text" name="Subject" ng-model="viewModel.subject" /></div>
+    <div>
+        Body:<br />
+        <textarea name="Body" ng-model="viewModel.body"></textarea>
+    </div>
+    <div>
+        <input type="button" value="Submit Fluent Via Filter" ng-click="submitFluentFilter()" />
+        &nbsp;
+        <input type="button" value="Submit Fluent Via Injection" ng-click="submitFluentInjection()" />
+        &nbsp;
+        <input type="button" value="Submit Embedded Validation" ng-click="submitEmbedded()" />
+        &nbsp;
+        <input type="button" value="Submit Data Annotations" ng-click="submitDataAnnotations()" />
+    </div>
+    <div>
+        Errors:<br />
+        <ul><li ng-repeat="error in errorMessages" style="color: red">{{ error.ErrorMessage }}</li></ul>
+    </div>
+    <br />
+    <div>
+        <ul style="list-style: none;">
+            <li style="padding: 5px">
+                To enable FluentValidationActionFilter, please uncomment Fluent.API > App_Start > WebApiConfig.cs > Lines 47 and 51.
+                <br/>
+                This will allow for the filter to execute the requested validation and
+                The route exectution will be intercepted by the filter.
+            </li>
+            <li style="padding: 5px">
+                Enabling the filter will prevent any code reaching the controller as long as the validation fails, which in turn makes 'Submit Fluent Via Injection' act the same way as 'Submit Fluent Via Filter'.
+            </li>
+            <li style="padding: 5px">
+                If the FluentValidationActionFilter is not enabled, the "Submit Fluent Via Filter" method will return true because there is no validaiton in the controller itself.
+            </li>
+            <li style="padding: 5px">To change the version of the validator, uncomment Fluent.API > Global.asax.cs > lines 25 or 26 depending which validator you'd like to use.</li>
+            <li style="padding: 10px"><span style="font-weight: 600">VALIDATOR CHAINIG</span>: Notice in the Fluent.API > Controllers > ContactUsInjectionController.cs > Lines 37 - 40. It uses extension methods to allow for chaining of different validators together. Please read the comments carefully. To see it in action, make sure you are injecting ContactUsValidator object in the DI container.</li>
+        </ul>
+    </div>
+</form>
+
+
